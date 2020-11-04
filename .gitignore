@@ -1,0 +1,9 @@
+*
+
+# Only keep these files
+!.gitignore
+!CHANGELOG.md
+!Dockerfile
+!LICENSE
+!Makefile
+!README.md
