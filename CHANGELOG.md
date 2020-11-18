@@ -1,4 +1,8 @@
 # CHANGELOG
+## 1.0.0 (Unreleased)
+#### INFO:
+* Beta3-version
+
 ## 0.12.8 (November 18, 2020)
 #### INFO:
 * Updated version to v0.12.8
