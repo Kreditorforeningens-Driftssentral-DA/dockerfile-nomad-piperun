@@ -3,7 +3,7 @@
 # Only keep these files
 !.gitignore
 !CHANGELOG.md
-!Dockerfile
+!Dockerfile.*
 !LICENSE
 !Makefile
 !README.md

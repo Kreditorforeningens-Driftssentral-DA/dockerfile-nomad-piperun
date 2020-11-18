@@ -1,0 +1,18 @@
+# https://docs.docker.com/engine/reference/builder/
+ARG PRE_IMAGE
+ARG RUNTIME_IMAGE
+
+FROM ${PRE_IMAGE:-alpine:latest} AS pre
+ARG HASHICORP_NOMAD_RELEASE="0.12.8"
+ARG HASHICORP_NOMAD_URL=https://releases.hashicorp.com/nomad/${HASHICORP_NOMAD_RELEASE}/nomad_${HASHICORP_NOMAD_RELEASE}_linux_amd64.zip
+ADD ${HASHICORP_NOMAD_URL} /tmp/nomad.zip
+RUN set -e \
+    && apk --no-cache add unzip curl \
+    && unzip /tmp/nomad.zip -d /tmp
+
+FROM ${RUNTIME_IMAGE:-ubuntu:focal}
+# DOCKER BUG when using COPY + USER .. Add user manually to populate passwd-file
+#USER nomad
+COPY --from=pre /tmp/nomad .
+ENTRYPOINT ["./nomad"]
+CMD ["version"]
